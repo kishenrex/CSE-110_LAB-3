@@ -100,6 +100,7 @@ export const StickyNotes = () => {
       
               <div>
                 <textarea
+                placeholder="Note Content"
                   onChange={(event) =>
                     setCreateNote({ ...createNote, content: event.target.value })}
                   required>
@@ -136,7 +137,7 @@ export const StickyNotes = () => {
                   style={{ background: theme.foreground, color: theme.background }}>♡</button>
                   </div>
                   <h2> {note.title} </h2>
-                <p contentEditable="true"> {note.content} </p>
+                <p contentEditable="true" suppressContentEditableWarning = {true}> {note.content} </p>
                   <p> {note.label} </p>
                 </div>
               ))}
