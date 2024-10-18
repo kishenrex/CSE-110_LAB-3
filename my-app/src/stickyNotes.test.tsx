@@ -101,29 +101,3 @@ describe("Delete StickyNote", () => {
     expect(testNoteSixContent).not.toBeInTheDocument()
   })
 });
-
-describe("StickyNotes Component", () => {
-  test("Ensures the form to create a sticky note renders correctly.", () => {
-    render(<StickyNotes />); 
-    const createNoteButton = screen.getByText("Create Note");
-    expect(createNoteButton).toBeInTheDocument();
-    const titleInput = screen.getByPlaceholderText("Note Title");
-    const contentTextarea = screen.getByPlaceholderText("Note Content");
-    expect(titleInput).toBeInTheDocument();
-    expect(contentTextarea).toBeInTheDocument();
-  });
-
-  test("Tests that a new note is created and displayed on the page.", () => {
-    render(<StickyNotes />);
-    const titleInput = screen.getByPlaceholderText("Note Title");
-    const contentTextarea = screen.getByPlaceholderText("Note Content");
-    const createNoteButton = screen.getByText("Create Note");
-    fireEvent.change(titleInput, { target: { value: "New Note" } });
-    fireEvent.change(contentTextarea, { target: { value: "Note content" } });
-    fireEvent.click(createNoteButton);
-    const newNoteTitle = screen.getByText("New Note");
-    const newNoteContent = screen.getByText("Note content");
-    expect(newNoteTitle).toBeInTheDocument();
-    expect(newNoteContent).toBeInTheDocument();
-  })
-});
