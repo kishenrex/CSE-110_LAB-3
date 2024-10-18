@@ -70,4 +70,24 @@ describe("Create StickyNote", () => {
     expect(newTestNoteOneContent).toBeInTheDocument();
  })
 
+ test ("Delete: Does the note get filtered out once the `x` button is pressed", () => {
+    render(<StickyNotes />);
+    
+    const testNoteOneTitle = screen.getByText("test note 1 title");
+    const testNoteOneContent = screen.getByText("test note 1 content");
+    
+    expect(testNoteOneTitle).toBeInTheDocument();
+    expect(testNoteOneContent).toBeInTheDocument();
+    
+    // Find the delete button associated with the note
+    const deleteButton = screen.getByRole("button", { name: "delete test note 1" });
+    
+    // Simulate clicking the delete button
+    fireEvent.click(deleteButton);
+    
+    // After deletion, the note should no longer be in the document
+    expect(testNoteOneTitle).not.toBeInTheDocument();
+    expect(testNoteOneContent).not.toBeInTheDocument();
+ })
+
 });
