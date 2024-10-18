@@ -29,7 +29,10 @@ describe("Create StickyNote", () => {
 
    expect(newNoteTitle).toBeInTheDocument();
    expect(newNoteContent).toBeInTheDocument();
- });
+ })
+});
+
+ describe("Read StickyNote", () => {
  test ("Read: Are all the notes that are created displayed on the page", () => {
     render(<StickyNotes />);
     const testNoteOneTitle = screen.getByText("test note 1 title");
@@ -57,10 +60,11 @@ describe("Create StickyNote", () => {
     expect(testNoteFiveContent).toBeInTheDocument();
     expect(testNoteSixContent).toBeInTheDocument();
  })
-
+});
+describe("Update StickyNote", () => {
  test ("Update: Once the update is done, is the document object value updating", () => {
     render(<StickyNotes />);
-    
+    //one test is enough
     const testNoteOneContent = screen.getByText("test note 1 content");
     
     fireEvent.click(testNoteOneContent);
@@ -69,7 +73,9 @@ describe("Create StickyNote", () => {
     const newTestNoteOneContent = screen.getByText("test note 1 something");
     expect(newTestNoteOneContent).toBeInTheDocument();
  })
+});
 
+<<<<<<< HEAD
  test ("Delete: Does the note get filtered out once the `x` button is pressed", () => {
     render(<StickyNotes />);
     
@@ -91,3 +97,32 @@ describe("Create StickyNote", () => {
  })
 
 });
+=======
+describe("Delete StickyNote", () => {
+  test ("Delete: Does the note get filtered out once the `x` button is pressed", () => {
+    render(<StickyNotes />);
+    const testNoteOneDelete = screen.getAllByText("x");
+    fireEvent.click(testNoteOneDelete[0]);
+    fireEvent.click(testNoteOneDelete[1]);
+    fireEvent.click(testNoteOneDelete[2]);
+    fireEvent.click(testNoteOneDelete[3]);
+    fireEvent.click(testNoteOneDelete[4]);
+    fireEvent.click(testNoteOneDelete[5]);
+
+     
+    const testNoteOneContent = screen.queryByText("test note 1 content");
+    const testNoteTwoContent = screen.queryByText("test note 2 content");
+    const testNoteThreeContent = screen.queryByText("test note 3 content");
+    const testNoteFourContent = screen.queryByText("test note 4 content");
+    const testNoteFiveContent = screen.queryByText("test note 5 content");
+    const testNoteSixContent = screen.queryByText("test note 6 content");
+    expect(testNoteOneContent).not.toBeInTheDocument()
+    expect(testNoteTwoContent).not.toBeInTheDocument()
+    expect(testNoteThreeContent).not.toBeInTheDocument()
+    expect(testNoteFourContent).not.toBeInTheDocument()
+    expect(testNoteFiveContent).not.toBeInTheDocument()
+    expect(testNoteSixContent).not.toBeInTheDocument()
+     
+  })
+ });
+>>>>>>> cbfd0f199a7600fcbf02e540d267997a675b76e6
